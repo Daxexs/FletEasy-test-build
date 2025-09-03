@@ -54,13 +54,16 @@ jobs:
 
       - name: Flet Build APK
         run: |
+          export PATH="$PATH:$HOME/flutter/bin"
+          flutter doctor --android-licenses
+
           cd tests/cache-pages-v0.27.6
           flet build apk --verbose --build-number=$BUILD_NUMBER --build-version=$BUILD_VERSION
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: apk-build-artifact
-          path: tests/cache-pages-v0.27.6/build/apk
+          name: apk-build-v0.27.6-v0.3.0.dev17
+          path: tests/cache-pages-v0.27.6/build/apk/app-release.apk
           if-no-files-found: warn
           overwrite: false
