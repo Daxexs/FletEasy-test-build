@@ -36,7 +36,7 @@ env:
   UV_NO_PROGRESS: 1
 
 jobs:
-  build-apk:
+  build-apk-v0_28_3:
     runs-on: ubuntu-latest
 
     steps:
@@ -62,6 +62,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: apk-build-artifact
-          path: build/apk
+          path: tests/cache-pages-v0.28.3/build/apk
           if-no-files-found: warn
           overwrite: false
