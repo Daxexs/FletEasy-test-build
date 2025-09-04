@@ -62,7 +62,7 @@ jobs:
 
       - name: Patch for linux build
         run: |
-          export PATH="$PATH:$HOME/flutter/bin"
+          flutter doctor
           flutter doctor --android-licenses
           flutter doctor
 
