@@ -61,7 +61,7 @@ jobs:
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: apk-build-v0.28.3-v0.3.0.dev17
+          name: apk-build-v0.28.3-v0.3.0.dev17-.apk
           path: tests/cache-pages-v0.28.3/build/apk/app-release.apk
           if-no-files-found: warn
           overwrite: false
