@@ -23,8 +23,7 @@ concurrency:
 
 env:
   # https://flet.dev/docs/publish#versioning
-  BUILD_NUMBER: 1
-  BUILD_VERSION: 1.0.0
+
   PYTHON_VERSION: 3.12
   FLET_VERSION: 0.28.3
   FLET_EASY_VERSION: 0.3.0.dev17
@@ -65,7 +64,7 @@ jobs:
         run: |
           source .venv/bin/activate
           cd tests/cache-pages
-          flet build apk --vv --build-number=${{env.BUILD_NUMBER}} --build-version=${{env.BUILD_VERSION}}
+          flet build apk -vv
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
@@ -125,7 +124,7 @@ jobs:
         run: |
           source .venv/bin/activate
           cd tests/cache-pages
-          flet build apk --vv --build-number=${{env.BUILD_NUMBER}} --build-version=${{env.BUILD_VERSION}}
+          flet build apk -vv
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
