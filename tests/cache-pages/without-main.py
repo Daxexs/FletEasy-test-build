@@ -84,6 +84,9 @@ class Counter(ft.Container):
 
 
 class Middleware(fs.MiddlewareRequest):
+    """ def __init__(self):
+        super().__init__() """
+
     def before_request(self):
         print("Middleware before_request:", self.data.page.views)
 
@@ -93,14 +96,13 @@ class Middleware(fs.MiddlewareRequest):
 
 app.add_middleware(Middleware)
 
-
-@app.page("/", title="Test 1", index=0, cache=True)
+# add page 1
+@fs.page("/", title="Test 1", index=0)
 def index_page(data: fs.Datasy):
     page = data.page
     appbar = data.view.appbar
 
     appbar.title = ft.Text("Test 1")
-    page.client_storage.set("counter", 5)
 
     return ft.View(
         controls=[
@@ -113,19 +115,17 @@ def index_page(data: fs.Datasy):
         vertical_alignment="center",
     )
 
-
-@app.page("/test2", title="Test 2", index=1)
+# add page 2
+@fs.page("/test2", title="Test 2", index=1)
 def test_page(data: fs.Datasy):
     page = data.page
     appbar = data.view.appbar
 
     appbar.title = ft.Text("Test 2")
-    counter = page.client_storage.get("counter")
 
     return ft.View(
         controls=[
             ft.Text("Disabled cache - Counter 2 ", size=50),
-            ft.Text(f"client_storage: {counter}"),
             Counter(page.update, ft.Colors.BLUE),
         ],
         appbar=appbar,
@@ -135,9 +135,9 @@ def test_page(data: fs.Datasy):
     )
 
 
-# add cache to the page
-@app.page("/test3", title="Test 3", index=2, cache=True)
-async def test2_page(data: fs.Datasy):
+# add page 3
+@fs.page("/test3", title="Test 3", index=2)
+def test2_page(data: fs.Datasy):
     page = data.page
     appbar = data.view.appbar
 
@@ -147,7 +147,6 @@ async def test2_page(data: fs.Datasy):
     return ft.View(
         controls=[
             ft.Text("Counter 3", size=50),
-            ft.Text(f"client_storage: {await page.client_storage.get_async('counter')}", size=50),
             Counter(page.update, ft.Colors.GREEN),
         ],
         appbar=appbar,

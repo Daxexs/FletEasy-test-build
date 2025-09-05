@@ -2,7 +2,10 @@
 name = "flet-app"
 version = "0.1.0"
 license = "MIT"
-dependencies = ["flet==0.28.3", "flet-easy==0.3.0.dev17"]
+dependencies = [
+    "flet==${FLET_VERSION}",
+    "flet-easy==${FLET_EASY_VERSION}", # Esta línea será reemplazada por el workflow
+]
 
 [[project.authors]]
 name = "Daxexs"
@@ -10,7 +13,7 @@ email = "Daxexs@test.com"
 
 [tool.flet]
 org = "com.mycompany"                         # --org
-product = "flet-easy-cache"                         # --product
+product = "flet-easy-cache"                   # --product
 company = "My Company"                        # --company
 copyright = "Copyright (C) 2024 by MyCompany" # --copyright
 build_number = 1                              # --build-number
@@ -18,7 +21,7 @@ BUILD_VERSION = "0.1.0"
 
 
 [tool.flet.app]
-module = "witch-main"
+module = "${MODULE_NAME}"
 path = "."
 #exclude = ["assets"]
 
@@ -32,7 +35,7 @@ color = ""      # --splash-color
 dark_color = "" # --splash-dark-color
 web = false     # --no-web-splash
 ios = false     # --no-ios-splash
-android = true # --no-android-splash
+android = true  # --no-android-splash
 
 
 [tool.flet.android]
