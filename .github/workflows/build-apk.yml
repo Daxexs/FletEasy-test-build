@@ -94,7 +94,7 @@ jobs:
 
       - name: update flet-cli 0.27.6
         run: |
-          uv add flet-cli==0.27.6 -U
+          uv add flet[all]==0.27.6 -U
 
       - name: set flet and flet 0.27.6 version from variables
         run: |
