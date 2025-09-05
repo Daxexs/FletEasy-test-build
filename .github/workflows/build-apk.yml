@@ -116,7 +116,7 @@ jobs:
 
       - name: Aceptar licencias de Android from Flutter
         run: |
-          flutter doctor --android-licenses
+          yes | flutter doctor --android-licenses
 
       - name: Flet Build apk
         run: |
