@@ -63,6 +63,19 @@ jobs:
       - name: Accept Android SDK licenses
         run: yes | flutter doctor --android-licenses
 
+      - name: Install Android SDK components
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y wget unzip
+          wget https://dl.google.com/android/repository/commandlinetools-linux-10406996_latest.zip -O cmdline-tools.zip
+          unzip cmdline-tools.zip
+          mkdir -p $HOME/android-sdk/cmdline-tools
+          mv cmdline-tools $HOME/android-sdk/cmdline-tools/latest
+          export ANDROID_SDK_ROOT=$HOME/android-sdk
+          export PATH=$PATH:$ANDROID_SDK_ROOT/cmdline-tools/latest/bin
+          yes | sdkmanager --licenses
+          sdkmanager "platform-tools" "platforms;android-33" "build-tools;33.0.2"
+
       - name: Patch for linux build
         run: |
           sudo apt-get update -y
@@ -72,8 +85,8 @@ jobs:
       - name: Setup Java JDK
         uses: actions/setup-java@v4.2.1
         with:
-          distribution: 'temurin'
-          java-version: '21'
+          distribution: "temurin"
+          java-version: "21"
 
       - name: Flet Build APK
         run: |
