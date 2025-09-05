@@ -31,6 +31,8 @@ env:
   MODULE_NAME: witch-main.py
   MODULE_NAME_2: witchout-main.py
 
+  FLUTTER_VERSION: 3.27.4
+
 jobs:
   build-apk-flet-v0_28_3:
     runs-on: ubuntu-latest
@@ -63,7 +65,7 @@ jobs:
         run: |
           source .venv/bin/activate
           cd tests/cache-pages
-          flet build apk --verbose --build-number=${{env.BUILD_NUMBER}} --build-version=${{env.BUILD_VERSION}}
+          flet build apk --vv --build-number=${{env.BUILD_NUMBER}} --build-version=${{env.BUILD_VERSION}}
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
@@ -108,13 +110,22 @@ jobs:
       - name: set module name from variables
         run: |
           sed -i "s/module = \".*\"/module = \"${MODULE_NAME}\"/" tests/cache-pages/pyproject.toml
-          sed -i "s/module_2 = \".*\"/module_2 = \"${MODULE_NAME_2}\"/" tests/cache-pages/pyproject.toml
+          sed -i "s/module_2 = \".*\"/module_2 = \"${MODULE_NAME_2}\"/" tests/cache-pages/pyproject.
+
+      - name: Setup Flutter ${{ env.FLUTTER_VERSION }}
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+
+      - name: Aceptar licencias de Android from Flutter
+        run: |
+          flutter doctor --android-licenses
 
       - name: Flet Build apk
         run: |
           source .venv/bin/activate
           cd tests/cache-pages
-          flet build apk --verbose --build-number=${{env.BUILD_NUMBER}} --build-version=${{env.BUILD_VERSION}}
+          flet build apk --vv --build-number=${{env.BUILD_NUMBER}} --build-version=${{env.BUILD_VERSION}}
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
