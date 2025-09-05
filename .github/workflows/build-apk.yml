@@ -50,7 +50,7 @@ jobs:
         run: uv python install ${{ env.PYTHON_VERSION }}
 
       - name: sync uv environment
-        run: uv sync uv sync --all-groups --all-extras
+        run: uv sync --all-groups --all-extras
 
       - name: establecer versión de flet y flet-easy desde variables
         run: |
@@ -90,7 +90,7 @@ jobs:
         run: uv python install ${{ env.PYTHON_VERSION }}
 
       - name: sync uv environment
-        run: uv sync uv sync --all-groups --all-extras
+        run: uv sync --all-groups --all-extras
 
       - name: update flet-cli 0.27.6
         run: |
