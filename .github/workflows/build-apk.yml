@@ -17,9 +17,6 @@ on:
 
 # Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
 # However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
 
 env:
   # https://flet.dev/docs/publish#versioning
@@ -89,6 +86,10 @@ jobs:
 
       - name: Install Python ${{ env.PYTHON_VERSION }} with uv
         run: uv python install ${{ env.PYTHON_VERSION }}
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update && sudo apt-get install -y libgtk-3-dev ninja-build
 
       - name: sync uv environment
         run: uv sync --all-groups --all-extras
