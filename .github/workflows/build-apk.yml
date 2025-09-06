@@ -93,13 +93,13 @@ jobs:
       - name: sync uv environment
         run: uv sync --all-groups --all-extras
 
-      - name: update flet-cli 0.6.0
+      - name: update flet-cli 0.26.0
         run: |
-          uv add flet[all]==0.26 -U
+          uv add flet[all]==0.26.0 -U
 
-      - name: set flet and flet 0.27.6 version from variables
+      - name: set flet and flet 0.26.0 version from variables
         run: |
-          sed -i "s/flet==.*\"/flet==0.27.6\"/" tests/cache-pages/pyproject.toml
+          sed -i "s/flet==.*\"/flet==0.26.0\"/" tests/cache-pages/pyproject.toml
 
       - name: set flet-easy ${{env.FLET_EASY_VERSION}} version from variables
         run: |
