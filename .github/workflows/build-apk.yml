@@ -114,9 +114,11 @@ jobs:
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
 
-      - name: Aceptar licencias de Android from Flutter
+      - name: Accept Android SDK licenses
         run: |
-          yes | flutter doctor --android-licenses
+          while yes | flutter doctor --android-licenses; do
+            echo "Accepted a license"
+          done || true
 
       - name: Flet Build apk
         run: |
