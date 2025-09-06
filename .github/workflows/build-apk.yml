@@ -93,9 +93,9 @@ jobs:
       - name: sync uv environment
         run: uv sync --all-groups --all-extras
 
-      - name: update flet-cli 0.27.6
+      - name: update flet-cli 0.6.0
         run: |
-          uv add flet[all]==0.27.6 -U
+          uv add flet[all]==0.26 -U
 
       - name: set flet and flet 0.27.6 version from variables
         run: |
@@ -114,11 +114,9 @@ jobs:
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
 
-      - name: Accept Android SDK licenses
+      - name: Aceptar licencias de Android from Flutter
         run: |
-          while yes | flutter doctor --android-licenses; do
-            echo "Accepted a license"
-          done || true
+          yes | flutter doctor --android-licenses
 
       - name: Flet Build apk
         run: |
