@@ -26,8 +26,8 @@ path = "."
 #exclude = ["assets"]
 
 [tool.flet.compile]
-app = true
-packages = true
+app = false
+packages = false
 cleanup = true
 
 [tool.flet.splash]
