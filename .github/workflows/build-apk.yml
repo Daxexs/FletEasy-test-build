@@ -23,7 +23,7 @@ env:
 
   PYTHON_VERSION: 3.12
   FLET_VERSION: 0.28.3
-  FLET_EASY_VERSION: 0.3.0.dev17
+  FLET_EASY_VERSION: 0.3.0.dev16
   MODULE_NAME: witch-main.py
   MODULE_NAME_2: witchout-main.py
 
