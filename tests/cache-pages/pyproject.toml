@@ -2,6 +2,7 @@
 name = "flet-app"
 version = "0.1.0"
 license = "MIT"
+requires-python = ">=3.9"
 dependencies = [
     "flet==${FLET_VERSION}",
     "flet-easy==${FLET_EASY_VERSION}", # Esta línea será reemplazada por el workflow
